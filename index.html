@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07110f">
+  <meta name="description" content="An interactive evidence atlas for the published study of global economic policy uncertainty and credit risk in Bangladesh.">
+  <title>Uncertainty → Credit | Bangladesh Evidence Atlas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to evidence</a>
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+  <canvas id="ambientCanvas" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="Back to top">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>GEPU × CREDIT RISK</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#signal">Signal</a>
+      <a href="#transmission">Mechanism</a>
+      <a href="#estimates">Estimates</a>
+      <a href="#robustness">Robustness</a>
+      <a href="#policy">Policy</a>
+    </nav>
+    <a class="doi-link" href="https://doi.org/10.1186/s43093-026-00799-5" target="_blank" rel="noopener">
+      Published paper <span aria-hidden="true">↗</span>
+    </a>
+  </header>
+
+  <main id="main">
+    <section class="hero section-shell">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="pulse-dot"></span> Bangladesh · 2000–2021 · published evidence</p>
+        <h1>When global uncertainty <em>crosses borders,</em> credit risk moves.</h1>
+        <p class="hero-deck">
+          A visual evidence atlas of how lagged global economic policy uncertainty is associated with
+          short-run changes in non-performing loans in Bangladesh’s banking system.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#signal">Enter the evidence</a>
+          <button class="button button-quiet" type="button" data-open-dialog="methodsDialog">Read the design</button>
+        </div>
+        <p class="citation-line">
+          Based exclusively on Angela (2026), <cite>Future Business Journal</cite>, 12:99.
+        </p>
+      </div>
+
+      <div class="hero-instrument reveal" aria-label="Key result instrument">
+        <div class="instrument-topline">
+          <span>PRIMARY SIGNAL</span>
+          <span class="live-label"><i></i> EVIDENCE LIVE</span>
+        </div>
+        <div class="orbital" aria-hidden="true">
+          <div class="orbit orbit-a"></div>
+          <div class="orbit orbit-b"></div>
+          <div class="orbit-core">
+            <span class="metric-value" data-count="1.21" data-decimals="2">0.00</span>
+            <small>percentage points</small>
+          </div>
+          <span class="orbit-label label-a">GEPU<sub>t−1</sub></span>
+          <span class="orbit-label label-b">ΔNPL<sub>t</sub></span>
+        </div>
+        <div class="instrument-reading">
+          <span>A one-standard-deviation rise in lagged GEPU</span>
+          <strong>→</strong>
+          <span>baseline annual change in the NPL ratio</span>
+        </div>
+        <p>Published interpretation of the baseline estimate: 0.0196 × 61.682 index points.</p>
+      </div>
+
+      <div class="evidence-strip reveal" aria-label="Study at a glance">
+        <article>
+          <strong class="metric-value" data-count="22">0</strong>
+          <span>annual observations</span>
+          <small>raw series, 2000–2021</small>
+        </article>
+        <article>
+          <strong class="metric-value" data-count="21">0</strong>
+          <span>effective observations</span>
+          <small>ΔNPL regression sample</small>
+        </article>
+        <article>
+          <strong class="metric-value" data-count="8">0</strong><b>/8</b>
+          <span>positive rolling windows</span>
+          <small>15-year specifications</small>
+        </article>
+        <article>
+          <strong class="metric-value" data-count="2000">0</strong>
+          <span>bootstrap replications</span>
+          <small>pairs bootstrap, seed 123</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell" id="signal">
+      <div class="section-heading reveal">
+        <div>
+          <p class="section-index">01 / THE OBSERVED SIGNAL</p>
+          <h2>Two series. Different scales. A lagged question.</h2>
+        </div>
+        <p>
+          The paper does not infer its central result from a visual correlation. It models the annual
+          <em>change</em> in NPLs against lagged GEPU, conditional on domestic macro-financial variables.
+        </p>
+      </div>
+
+      <div class="signal-layout">
+        <article class="figure-panel reveal">
+          <div class="panel-kicker">
+            <span>Published Figure 2</span>
+            <button class="icon-button" type="button" data-open-dialog="figureDialog" aria-label="Expand published Figure 2">↗</button>
+          </div>
+          <div class="published-figure" id="publishedFigure">
+            <img src="assets/published-figure-2.jpg" alt="Published line chart of NPL and GEPU in Bangladesh from 2000 to 2021.">
+            <div class="figure-dimmer dimmer-left" aria-hidden="true"></div>
+            <div class="figure-dimmer dimmer-right" aria-hidden="true"></div>
+            <div class="focus-band" aria-hidden="true"><span></span></div>
+          </div>
+          <div class="lens-controls" role="group" aria-label="Focus the published time-series figure">
+            <button class="lens-button active" type="button" data-lens="full">Full sample</button>
+            <button class="lens-button" type="button" data-lens="repair">Balance-sheet repair</button>
+            <button class="lens-button" type="button" data-lens="gfc">GFC window</button>
+            <button class="lens-button" type="button" data-lens="pandemic">Pandemic edge</button>
+          </div>
+          <p class="figure-caption">
+            Original published figure, reused under CC BY 4.0. The interactive lens changes emphasis only; it does not alter the plotted data.
+          </p>
+        </article>
+
+        <aside class="lens-notes reveal" aria-live="polite">
+          <p class="mini-label" id="lensPeriod">2000–2021</p>
+          <h3 id="lensTitle">The full sample resists a one-to-one reading.</h3>
+          <p id="lensText">
+            NPLs decline sharply in the early years while GEPU trends upward with pronounced stress spikes.
+            The paper therefore separates contemporaneous levels from a lagged, flow-based regression design.
+          </p>
+          <div class="range-card">
+            <span>Published descriptive range</span>
+            <div>
+              <p><i class="key key-blue"></i>NPL ratio</p>
+              <strong>1.904–34.900%</strong>
+            </div>
+            <div>
+              <p><i class="key key-red"></i>GEPU index</p>
+              <strong>57.929–276.492</strong>
+            </div>
+          </div>
+          <blockquote>
+            “Elevated GEPU appears to precede increases or stabilisation in credit risk.”
+            <cite>Study interpretation of Figure 2</cite>
+          </blockquote>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-shell" id="transmission">
+      <div class="section-heading reveal">
+        <div>
+          <p class="section-index">02 / THE TRANSMISSION ENGINE</p>
+          <h2>External shock. Domestic balance sheets. Delayed recognition.</h2>
+        </div>
+        <p>
+          Explore the published conceptual architecture and the mechanisms used to interpret the estimates.
+          Select a node to trace its role.
+        </p>
+      </div>
+
+      <div class="transmission-stage reveal">
+        <div class="flow-canvas" id="flowCanvas">
+          <svg class="flow-lines" viewBox="0 0 1000 560" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="flowGradient" x1="0" x2="1">
+                <stop offset="0" stop-color="#f25268"/>
+                <stop offset="1" stop-color="#4bd7a6"/>
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="4" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <path class="flow-path primary" d="M500,96 C500,155 500,170 500,228"/>
+            <path class="flow-path" d="M500,336 C500,390 140,360 140,470"/>
+            <path class="flow-path" d="M500,336 C500,390 380,360 380,470"/>
+            <path class="flow-path" d="M500,336 C500,390 620,360 620,470"/>
+            <path class="flow-path" d="M500,336 C500,390 860,360 860,470"/>
+          </svg>
+
+          <button class="flow-node shock active" type="button" data-flow="gepu">
+            <small>EXTERNAL SHOCK</small>
+            <strong>GEPU<sub>t−1</sub></strong>
+            <span>Global policy uncertainty</span>
+          </button>
+          <button class="flow-node outcome" type="button" data-flow="dnpl">
+            <small>OUTCOME</small>
+            <strong>ΔNPL<sub>t</sub></strong>
+            <span>Short-run credit deterioration</span>
+          </button>
+          <button class="flow-node conditioner c1" type="button" data-flow="growth">
+            <strong>GDP growth</strong><span>Macro cycle</span>
+          </button>
+          <button class="flow-node conditioner c2" type="button" data-flow="remittance">
+            <strong>Remittances</strong><span>Household buffer</span>
+          </button>
+          <button class="flow-node conditioner c3" type="button" data-flow="debt">
+            <strong>Public debt</strong><span>Fiscal space</span>
+          </button>
+          <button class="flow-node conditioner c4" type="button" data-flow="stability">
+            <strong>Bank stability</strong><span>Z-score</span>
+          </button>
+        </div>
+
+        <aside class="flow-detail" aria-live="polite">
+          <p class="mini-label" id="flowLabel">PRIMARY EXPOSURE</p>
+          <h3 id="flowTitle">Global economic policy uncertainty</h3>
+          <p id="flowBody">
+            The annual GEPU index enters the study as a one-period-lagged predetermined regressor.
+            Bangladesh is treated as a price-taker in global uncertainty rather than a source of the shock.
+          </p>
+          <div class="mechanism-tags" id="flowTags">
+            <span>Trade demand</span><span>External finance</span><span>FX pressure</span><span>Commodity prices</span>
+          </div>
+          <p class="flow-source" id="flowSource">Published conceptual model and empirical specification.</p>
+        </aside>
+      </div>
+
+      <div class="mechanism-grid reveal">
+        <article>
+          <span>01</span>
+          <h3>External demand</h3>
+          <p>Uncertainty can weaken export orders, margins and cash flow, particularly through ready-made garments.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Finance & FX</h3>
+          <p>Risk premia, trade finance, currency pressure and unhedged balance sheets can tighten debt service capacity.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Prices & income</h3>
+          <p>Commodity-price and inflation channels can compress firms’ margins and households’ disposable income.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Remittance hosts</h3>
+          <p>Uncertainty in destination economies can alter the income buffer available to Bangladesh households.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell" id="estimates">
+      <div class="section-heading reveal">
+        <div>
+          <p class="section-index">03 / THE CORE ESTIMATE</p>
+          <h2>The coefficient survives every baseline specification.</h2>
+        </div>
+        <p>
+          Select a model to inspect the published GEPU coefficient, HAC standard error and controls.
+          The interval display reproduces the information behind the paper’s coefficient plot.
+        </p>
+      </div>
+
+      <div class="estimate-layout">
+        <article class="chart-panel reveal">
+          <div class="panel-kicker">
+            <span>Table 5 · Figure 3</span>
+            <button class="icon-button" type="button" data-open-dialog="coefficientFigureDialog" aria-label="Open original published Figure 3">Original ↗</button>
+          </div>
+          <div id="coefficientChart" class="coefficient-chart" role="img" aria-label="Five positive GEPU coefficients with confidence intervals across baseline specifications"></div>
+          <p class="figure-caption">
+            Intervals reconstructed from the reported Table 5 Newey–West HAC standard errors to reproduce the published coefficient plot.
+          </p>
+        </article>
+
+        <aside class="model-inspector reveal" aria-live="polite">
+          <p class="mini-label">SELECTED SPECIFICATION</p>
+          <div class="model-number">
+            <span id="modelName">Baseline</span>
+            <strong id="modelCoefficient">0.0196<sup>***</sup></strong>
+          </div>
+          <div class="model-stat-row">
+            <div><span>HAC SE</span><strong id="modelSE">0.00516</strong></div>
+            <div><span>Observations</span><strong>21</strong></div>
+            <div><span>Joint p-value</span><strong id="modelP">0.0030</strong></div>
+          </div>
+          <div class="control-stack" id="controlStack" aria-label="Controls included"></div>
+          <p class="model-reading" id="modelReading">
+            A 61.682-point rise in GEPU corresponds to the paper’s 1.21 percentage-point baseline interpretation.
+          </p>
+        </aside>
+      </div>
+
+      <div class="model-selector reveal" role="group" aria-label="Select a baseline model">
+        <button class="model-button active" type="button" data-model="0"><b>01</b><span>Baseline</span><small>GEPU · RMT · GDP</small></button>
+        <button class="model-button" type="button" data-model="1"><b>02</b><span>+ Debt</span><small>Fiscal capacity</small></button>
+        <button class="model-button" type="button" data-model="2"><b>03</b><span>+ Stability</span><small>Bank Z-score</small></button>
+        <button class="model-button" type="button" data-model="3"><b>04</b><span>+ Reserves</span><small>External buffer</small></button>
+        <button class="model-button" type="button" data-model="4"><b>05</b><span>Full model</span><small>All controls</small></button>
+      </div>
+
+      <div class="expectation-panel reveal">
+        <div>
+          <p class="mini-label">THEORY MEETS THE ESTIMATE</p>
+          <h3>The domestic controls do more than “control.” They expose the transmission environment.</h3>
+        </div>
+        <div class="expectation-table" role="table" aria-label="Expected and observed signs in the full model">
+          <div class="expectation-row header" role="row">
+            <span role="columnheader">Variable</span><span role="columnheader">Prior</span><span role="columnheader">Full model</span><span role="columnheader">Reading</span>
+          </div>
+          <div class="expectation-row" role="row">
+            <strong role="cell">Remittances</strong><span role="cell">−</span><span class="sign-positive" role="cell">+ *</span><span role="cell">Contrary to the household-buffer prior</span>
+          </div>
+          <div class="expectation-row" role="row">
+            <strong role="cell">GDP growth</strong><span role="cell">−</span><span class="sign-positive" role="cell">+ **</span><span role="cell">Consistent with procyclical lending interpretation</span>
+          </div>
+          <div class="expectation-row" role="row">
+            <strong role="cell">Public debt</strong><span role="cell">−</span><span class="sign-negative" role="cell">− ***</span><span role="cell">Short-run fiscal-buffer interpretation</span>
+          </div>
+          <div class="expectation-row" role="row">
+            <strong role="cell">Bank stability</strong><span role="cell">−</span><span class="sign-negative" role="cell">− **</span><span role="cell">Capital and profitability cushion</span>
+          </div>
+          <div class="expectation-row" role="row">
+            <strong role="cell">Reserves</strong><span role="cell">Conditional</span><span role="cell">n.s.</span><span role="cell">No direct short-run effect detected</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" id="robustness">
+      <div class="section-heading reveal">
+        <div>
+          <p class="section-index">04 / THE EVIDENCE LAB</p>
+          <h2>Robustness is a pattern—not a single star.</h2>
+        </div>
+        <p>
+          Move across the paper’s diagnostic layers. The interface preserves non-significant results and
+          small-sample cautions rather than flattening them into a headline.
+        </p>
+      </div>
+
+      <div class="evidence-lab reveal">
+        <div class="lab-tabs" role="tablist" aria-label="Evidence layers">
+          <button type="button" role="tab" aria-selected="true" data-lab="baseline">Baseline</button>
+          <button type="button" role="tab" aria-selected="false" data-lab="crisis">Crisis</button>
+          <button type="button" role="tab" aria-selected="false" data-lab="inference">Inference</button>
+          <button type="button" role="tab" aria-selected="false" data-lab="dynamics">Dynamics</button>
+          <button type="button" role="tab" aria-selected="false" data-lab="diagnostics">Diagnostics</button>
+        </div>
+        <div class="lab-display" id="labDisplay" role="tabpanel" tabindex="0"></div>
+      </div>
+
+      <div class="two-lenses reveal">
+        <div class="lens-card correlation">
+          <p class="mini-label">DESCRIPTIVE LENS</p>
+          <div class="lens-value">−0.469<sup>**</sup></div>
+          <h3>Contemporaneous level correlation</h3>
+          <p>NPL and GEPU levels move inversely over the full sample, heavily reflecting the early decline in the NPL stock.</p>
+        </div>
+        <div class="lens-bridge" aria-hidden="true">
+          <span>≠</span>
+          <i></i>
+          <small>different estimand</small>
+        </div>
+        <div class="lens-card dynamic">
+          <p class="mini-label">DYNAMIC REGRESSION LENS</p>
+          <div class="lens-value">+0.0196<sup>***</sup></div>
+          <h3>Lagged effect on the annual NPL change</h3>
+          <p>GEPU<sub>t−1</sub> predicts ΔNPL<sub>t</sub> after conditioning on remittances and economic growth.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" id="policy">
+      <div class="section-heading reveal">
+        <div>
+          <p class="section-index">05 / THE SUPERVISORY CLOCK</p>
+          <h2>The practical value is the lead time.</h2>
+        </div>
+        <p>
+          The paper’s policy argument is forward-looking: stock NPL ratios arrive after the shock has already
+          passed through borrowers’ cash flow and banks’ credit processes.
+        </p>
+      </div>
+
+      <div class="policy-clock reveal">
+        <div class="clock-rail" aria-hidden="true"><i></i><i></i><i></i></div>
+        <article class="policy-step active">
+          <span class="policy-time">T = 0</span>
+          <h3>Detect the external shock</h3>
+          <p>Integrate GEPU and other external-risk indicators into macro-financial surveillance rather than waiting for realised arrears.</p>
+          <small>Early-warning signal</small>
+        </article>
+        <article class="policy-step">
+          <span class="policy-time">T + 1 YEAR</span>
+          <h3>Interrogate credit quality</h3>
+          <p>Use the approximate one-year window for stress testing, targeted loan review, and forward-looking asset-quality monitoring.</p>
+          <small>Supervisory lead time</small>
+        </article>
+        <article class="policy-step">
+          <span class="policy-time">THROUGH THE CYCLE</span>
+          <h3>Build countercyclical capacity</h3>
+          <p>Tighten underwriting and consider dynamic provisioning or countercyclical buffers during expansions, when procyclical risk may accumulate.</p>
+          <small>Resilience architecture</small>
+        </article>
+      </div>
+
+      <div class="policy-matrix reveal">
+        <article>
+          <p class="mini-label">MONITOR</p>
+          <h3>External uncertainty + domestic resilience</h3>
+          <ul>
+            <li>Global economic policy uncertainty</li>
+            <li>Flow-based change in NPLs</li>
+            <li>Fiscal capacity and bank stability</li>
+          </ul>
+        </article>
+        <article>
+          <p class="mini-label">ACT</p>
+          <h3>Before the NPL stock confirms the shock</h3>
+          <ul>
+            <li>Forward-looking stress scenarios</li>
+            <li>Pre-emptive capital and liquidity buffers</li>
+            <li>Underwriting discipline in expansions</li>
+          </ul>
+        </article>
+        <article>
+          <p class="mini-label">INTERPRET CAUTIOUSLY</p>
+          <h3>Small sample, reduced-form evidence</h3>
+          <ul>
+            <li>21 effective annual observations</li>
+            <li>No structural causal identification</li>
+            <li>Single-country generalisability constraint</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell source-section" id="source">
+      <div class="source-card reveal">
+        <div>
+          <p class="section-index">SOURCE / ATTRIBUTION</p>
+          <h2>One paper. No synthetic evidence.</h2>
+          <p>
+            Every numerical result, chart, table and analytical statement in this atlas is drawn from the
+            published article. Interactive states reorganise the evidence; they do not create new observations
+            or substitute a new empirical analysis.
+          </p>
+        </div>
+        <div class="source-meta">
+          <p><span>Article</span><strong>Global economic policy uncertainty and credit risk in emerging economies: evidence from Bangladesh</strong></p>
+          <p><span>Author</span><strong>Irine Tahjiba Angela</strong></p>
+          <p><span>Journal</span><strong>Future Business Journal (2026) 12:99</strong></p>
+          <p><span>Licence</span><strong>Creative Commons Attribution 4.0</strong></p>
+          <a class="button button-primary" href="https://doi.org/10.1186/s43093-026-00799-5" target="_blank" rel="noopener">Open the published article ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Interactive evidence atlas · Bangladesh banking-sector credit risk</p>
+    <p>Published evidence, redesigned for exploration.</p>
+  </footer>
+
+  <dialog id="figureDialog" class="modal">
+    <form method="dialog"><button class="dialog-close" aria-label="Close expanded figure">×</button></form>
+    <p class="mini-label">PUBLISHED FIGURE 2</p>
+    <h2>Evolution of NPLs and GEPU, 2000–2021</h2>
+    <img src="assets/published-figure-2.jpg" alt="Expanded published chart of NPL and GEPU from 2000 to 2021.">
+    <p>Source: Angela (2026), Figure 2. Reused under CC BY 4.0.</p>
+  </dialog>
+
+  <dialog id="methodsDialog" class="modal methods-modal">
+    <form method="dialog"><button class="dialog-close" aria-label="Close study design">×</button></form>
+    <p class="mini-label">EMPIRICAL DESIGN</p>
+    <h2>Designed for a short annual series</h2>
+    <div class="methods-grid">
+      <p><span>Outcome</span><strong>ΔNPL</strong><small>First difference of NPL / gross loans</small></p>
+      <p><span>Exposure</span><strong>GEPU<sub>t−1</sub></strong><small>Annual mean, lagged one period</small></p>
+      <p><span>Estimator</span><strong>OLS–HAC</strong><small>Newey–West, baseline lag 2</small></p>
+      <p><span>Sample</span><strong>T = 21</strong><small>Effective annual observations</small></p>
+    </div>
+    <p class="modal-note">
+      The study uses a parsimonious reduced-form design because the variables have mixed integration orders
+      and the annual sample is small. It reports extensive inference and specification checks, while explicitly
+      limiting causal and cross-country claims.
+    </p>
+  </dialog>
+
+  <dialog id="coefficientFigureDialog" class="modal">
+    <form method="dialog"><button class="dialog-close" aria-label="Close published coefficient figure">×</button></form>
+    <p class="mini-label">PUBLISHED FIGURE 3</p>
+    <h2>GEPU coefficient across specifications</h2>
+    <img src="assets/published-figure-3.jpg" alt="Published coefficient plot showing positive lagged GEPU estimates across five model specifications.">
+    <p>Source: Angela (2026), Figure 3. Reused under CC BY 4.0.</p>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
